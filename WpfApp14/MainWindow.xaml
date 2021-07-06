@@ -1,0 +1,86 @@
+﻿<Window x:Class="WpfApp14.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp14"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="400" Width="400">
+	
+	<!-- 화면을 구성하는 xaml 파일 -->
+	
+	<!-- // Grid 구조는 디자인을 위해서 존재하고 // -->
+	<!-- // Binding은 data 값을 컬럼에 붙여준다. -->
+	
+	<!-- 큰 창을 기준으로 Grid -->
+	<!-- 그리드를 생성할 때는, 반드시 행과 열에 대한 정의가 필요하다.-->
+	
+	<!-- 정렬 기준-->
+    <Grid HorizontalAlignment="Center" 
+            VerticalAlignment="Center">
+		
+		<!-- 행 속성 -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+		
+		<!-- 열 속성 -->
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="60" />
+            <ColumnDefinition Width="60" />
+            <ColumnDefinition Width="60" />
+            <ColumnDefinition Width="60" />
+        </Grid.ColumnDefinitions>
+
+		<!-- 1행 1열을 4개의 컬럼을 묶어서 너비 높이 지정 -->
+            <Grid Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="4">
+                <Grid.ColumnDefinitions>
+		            <!-- 사이즈에서 *는 비율을 상징한다. -->
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="50*" />
+                    <ColumnDefinition Width="50*" />
+                </Grid.ColumnDefinitions>
+				
+				<!-- 굵기, 색상 -->
+                <Border BorderThickness="1" BorderBrush="Black">
+					<!-- 글자 크기 및 정렬 + 데이터 바인딩-->
+                    <TextBlock FontSize="15" 
+							   VerticalAlignment="Center" 
+                               HorizontalAlignment="Center"
+                               Text="{Binding DisplayText}" />
+                </Border>
+
+				<!-- 커맨드 바인딩 -->
+                <Button Content="BACK" Grid.Column="1" Command="{Binding Backspace}" />
+                <Button Content="Clear" Grid.Column="2" Command="{Binding Clear}" />
+            </Grid>
+		
+		    <!-- 1열 -->
+            <Button Content="1" CommandParameter="1" Grid.Row="1" Grid.Column="0" Command="{Binding Append}" />
+            <Button Content="2" CommandParameter="2" Grid.Row="1" Grid.Column="1" Command="{Binding Append}" />
+            <Button Content="3" CommandParameter="3" Grid.Row="1" Grid.Column="2" Command="{Binding Append}" />
+            <Button Content="+" CommandParameter="+" Grid.Row="1" Grid.Column="3" Command="{Binding Operator}" />
+            
+		    <!-- 2열 -->
+		    <Button Content="4" CommandParameter="4" Grid.Row="2" Grid.Column="0" Command="{Binding Append}" />
+            <Button Content="5" CommandParameter="5" Grid.Row="2" Grid.Column="1" Command="{Binding Append}" />
+            <Button Content="6" CommandParameter="6" Grid.Row="2" Grid.Column="2" Command="{Binding Append}" />
+            <Button Content="-" CommandParameter="-" Grid.Row="2" Grid.Column="3" Command="{Binding Operator}" />
+            
+		    <!-- 3열 -->
+		    <Button Content="7" CommandParameter="7" Grid.Row="3" Grid.Column="0" Command="{Binding Append}" />
+            <Button Content="8" CommandParameter="8" Grid.Row="3" Grid.Column="1" Command="{Binding Append}" />
+            <Button Content="9" CommandParameter="9" Grid.Row="3" Grid.Column="2" Command="{Binding Append}" />
+            <Button Content="x" CommandParameter="*" Grid.Row="3" Grid.Column="3" Command="{Binding Operator}" />
+               
+	        <!-- 4열 -->
+		    <Button Content="0" CommandParameter="0" Grid.Row="4" Grid.Column="0" Command="{Binding Append}" />
+            <Button Content="." CommandParameter="." Grid.Row="4" Grid.Column="1" Command="{Binding Append}" />
+            <Button Content="=" CommandParameter="=" Grid.Row="4" Grid.Column="2" Command="{Binding Calculate}" />
+            <Button Content="/" CommandParameter="/" Grid.Row="4" Grid.Column="3" Command="{Binding Operator}" />
+    </Grid>
+</Window>
